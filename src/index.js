@@ -19,6 +19,7 @@ export default class Edgemesh extends Emitter {
         let script = document.createElement('script');
 
         // Set default client
+        // NOTE: Update this to dist on next push
         let client = opts.client || 'unpkg.com/edgemesh';
 
         // Create script tag
