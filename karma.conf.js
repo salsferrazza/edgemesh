@@ -2,6 +2,7 @@
 
 var babel = require('rollup-plugin-babel');
 var resolve = require('rollup-plugin-node-resolve');
+var commonjs = require('rollup-plugin-commonjs');
 
 module.exports = function(config) {
 
@@ -29,7 +30,10 @@ module.exports = function(config) {
     },
 
     // list of files to exclude
-    exclude: [],
+    exclude: [
+      '/node_modules/',
+      '/test/'
+    ],
 
     // Client options
     client: {
@@ -39,7 +43,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'src/index.js': ['rollup', 'coverage'],
+      'src/index.js': ['rollup'],
       'test/index.js': ['rollup']
     },
 
@@ -52,12 +56,17 @@ module.exports = function(config) {
           preferBuiltins: true,
           browser: true
         }),
+        commonjs({
+            include: 'node_modules/**'
+        }),
         babel({
           babelrc: false,
           presets: ['es2015-rollup'],
           plugins: [
             'transform-object-rest-spread',
-            'transform-export-extensions'
+            "transform-class-properties",
+            'transform-export-extensions',
+            [ "__coverage__", { "ignore": [ 'test', 'node_modules' ] } ]
           ]
         })
       ],
@@ -68,9 +77,9 @@ module.exports = function(config) {
 
     // Coverage
     coverageReporter: {
-        dir: '.',
+        dir: 'coverage',
         reporters: [
-            { type: 'lcovonly', subdir: '.', file: 'coverage.info' }
+            { type: 'lcovonly', subdir: '.', file: 'lcov.info' }
         ]
     },
 

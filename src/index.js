@@ -1,13 +1,19 @@
 /**
- * @flow
- *
  * Instantiate edgemesh client
  * @param  {Object} opts configuration options
- * @return {undefined}   returns void
+ * @return {Promise}   returns
  */
-export default function(opts = {}) {
 
-    return new Promise((resolve, reject) => {
+import Emitter from 'component-emitter';
+
+export default class Edgemesh extends Emitter {
+
+    element = null;
+
+    constructor(opts = {}) {
+
+        super();
+
         // Create script tag
         let head = document.getElementsByTagName('head')[0];
         let script = document.createElement('script');
@@ -17,20 +23,22 @@ export default function(opts = {}) {
 
         // Create script tag
         script.type = 'text/javascript';
-        script.onload = function() {
+        script.onload = () => {
             window.edgemesh = new window.Edgemesh({
                 debug: opts.debug || false,
                 host: opts.host || 'sig.edgeno.de',
-                client: client,
                 swPath: opts.swPath || '/'
             });
-            resolve(window.edgemesh);
+            this.emit('ready', window.edgemesh);
         }
 
         // Inject script
         script.src = 'https://' + client + '/edgemesh.client.min.js';
         head.appendChild(script);
 
-    });
+        // Set element
+        this.element = script;
+
+    }
 
 }

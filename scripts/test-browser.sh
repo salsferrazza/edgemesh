@@ -1,3 +1,3 @@
 #!/bin/bash
-rimraf coverage.info
+rimraf coverage
 karma start

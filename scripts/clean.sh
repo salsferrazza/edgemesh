@@ -1,4 +1,4 @@
 #!/bin/bash
-rimraf coverage.info
+rimraf coverage
 rimraf dist/index.js
 rimraf dist/bin.js
