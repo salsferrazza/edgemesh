@@ -26,12 +26,18 @@ module.exports = function(config) {
 
     // Proxies
     proxies: {
-      '/edgemesh.sw.js': 'http://sig.edgeno.de/edgemesh.sw.js'
+      '/edgemesh.sw.js': 'http://sig.edgeno.de/edgemesh.sw.js',
+      '/edgemesh.client.min.js': '/dist/edgemesh.client.min.js',
+      '/edgemesh.hub.min.js': '/dist/edgemesh.hub.min.js'
     },
 
     // list of files to exclude
     exclude: [],
 
+    // Client options
+    client: {
+      captureConsole: false
+    },
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
