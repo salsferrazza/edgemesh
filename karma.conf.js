@@ -21,7 +21,9 @@ module.exports = function(config) {
       'src/index.js',
       'test/browser/chai.js',
       'test/runner-browser.js',
-      'test/index.js'
+      'test/index.js',
+      'dist/edgemesh.client.min.js',
+      'dist/edgemesh.hub.min.js'
     ],
 
     // Proxies
