@@ -40,14 +40,4 @@ describe('Edgemesh', () => {
             });
     });
 
-    it('Should start with custom service worker path', (done) => {
-        let url = 'test.edgemesh.com';
-        let edgemesh = Edgemesh({ swPath: url })
-            .then((em) => {
-                console.log(em.swPath);
-                expect(em.swPath).to.equal(url);
-                done();
-            });
-    });
-
 });

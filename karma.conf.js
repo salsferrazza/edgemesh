@@ -13,20 +13,19 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['mocha'],
+    frameworks: ['mocha', 'chai'],
 
 
     // list of files / patterns to load in the browser
     files: [
       'src/index.js',
-      'test/browser/chai.js',
-      'test/runner-browser.js',
-      'test/index.js'
+      'test/index.js',
+      'src/sw.js'
     ],
 
     // Proxies
     proxies: {
-      '/edgemesh.sw.js': 'http://sig.edgeno.de/edgemesh.sw.js'
+      '/edgemesh.sw.js': '/base/src/sw.js'
     },
 
     // list of files to exclude
