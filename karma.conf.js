@@ -21,16 +21,12 @@ module.exports = function(config) {
       'src/index.js',
       'test/browser/chai.js',
       'test/runner-browser.js',
-      'test/index.js',
-      'dist/edgemesh.client.min.js',
-      'dist/edgemesh.hub.min.js'
+      'test/index.js'
     ],
 
     // Proxies
     proxies: {
-      '/edgemesh.sw.js': 'http://sig.edgeno.de/edgemesh.sw.js',
-      '/edgemesh.client.min.js': '/dist/edgemesh.client.min.js',
-      '/edgemesh.hub.min.js': '/dist/edgemesh.hub.min.js'
+      '/edgemesh.sw.js': 'http://sig.edgeno.de/edgemesh.sw.js'
     },
 
     // list of files to exclude
