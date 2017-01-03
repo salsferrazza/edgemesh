@@ -12,4 +12,6 @@ ratings:
   paths:
   - "src/*.js"
   - "dist/*.js"
-exclude_paths: []
+exclude_paths:
+  - "src/bin.js"
+  - "dist/bin.js"

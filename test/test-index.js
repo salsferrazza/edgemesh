@@ -8,12 +8,4 @@ describe('Edgemesh', () => {
         done();
     });
 
-    it('Should expose edgemesh instance on window', (done) => {
-        let edgemesh = new Edgemesh();
-        setTimeout(() => {
-            assert.isDefined(window.edgemesh);
-            done();
-        }, 500);
-    });
-
 });
