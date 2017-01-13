@@ -3,6 +3,7 @@
 # Edgemesh: Peer Enhanced CDN
 [![npm version](https://img.shields.io/npm/v/edgemesh.svg?maxAge=2592000)](https://github.com/edgemesh/edgemesh)
 [![npm license](https://img.shields.io/npm/l/edgemesh.svg?maxAge=2592000)](https://www.npmjs.com/package/edgemesh)
+[![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/sindresorhus/xo)
 
 [![Build Status](https://travis-ci.org/edgemesh/edgemesh.svg?branch=master)](https://travis-ci.org/edgemesh/edgemesh)
 [![Test Coverage](https://codeclimate.com/github/edgemesh/edgemesh/badges/coverage.svg)](https://codeclimate.com/github/edgemesh/edgemesh/coverage)

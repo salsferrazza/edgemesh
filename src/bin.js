@@ -1,56 +1,53 @@
 #!/usr/bin/env node
+var path = require('path');
+var fs = require('fs');
 var program = require('commander');
 var shell = require('shelljs');
 var chalk = require('chalk');
-var path = require('path');
-var fs = require('fs');
-var packageJSON = require('./package.json');
+var packageJSON = require('../package.json');
 
 var CONFIG_LOCATION = '/usr/local/etc/edgemesh';
 var CONFIG_FILENAME = 'edgemesh.conf';
 
 program
-    .version(require('./package.json').version)
-    .usage('<command> [options]')
-    .on('--help', function() {
-        console.log('  Examples:');
-        console.log();
-        console.log('    $ edgemesh install ./server/static');
-        console.log('    $ edgemesh update');
-        console.log('    $ edgemesh check-updates');
-        console.log();
-    });
+    .version(packageJSON.version)
+    .usage('<command> <options>')
+    .on('--help', function () {
+	console.log('  Examples:');
+	console.log();
+	console.log('    $ edgemesh install ./server/static');
+	console.log('    $ edgemesh update');
+	console.log('    $ edgemesh check-updates');
+	console.log();
+});
 
 /**
  * Install Command
  */
 program
-    .command('install [options] <path>')
+    .command('install <path>')
     .alias('i')
     .description('install edgemesh server files at static path')
     .usage('edgemesh install ./server/static')
-    .action(function(stdin, options) {
+    .action(function (stdin) {
+	checkVersion();
 
-        checkVersion();
+	if (!path.isAbsolute(stdin)) {
+		stdin = path.resolve(__dirname, stdin);
+	}
 
-        if(!path.isAbsolute(stdin)) {
-            stdin = path.resolve(__dirname, stdin);
-        }
-
-        shell.exec('mkdir -p ' + CONFIG_LOCATION)
-        shell.cp(path.resolve(__dirname, './edgemesh.sw.js'), stdin);
+	shell.exec('mkdir -p ' + CONFIG_LOCATION);
+	shell.cp(path.resolve(__dirname, './edgemesh.sw.js'), stdin);
 
         // Store Config
-        fs.writeFile(path.join(CONFIG_LOCATION, CONFIG_FILENAME), "path: " + stdin, function(err) {
-            if(err) {
-                return console.log(chalk.red('Error writing edgemesh config'), err);
-            }
+	fs.writeFile(path.join(CONFIG_LOCATION, CONFIG_FILENAME), 'path: ' + stdin, function (err) {
+		if (err) {
+			return console.log(chalk.red('Error writing edgemesh config'), err);
+		}
 
-            return console.log(chalk.green('Edgemesh installed successfully.'));
-
-        });
-
-    });
+		return console.log(chalk.green('Edgemesh installed successfully.'));
+	});
+});
 
 /**
  * Update Command
@@ -61,25 +58,24 @@ program
     .description('update edgemesh server files')
     .usage('edgemesh update [options]')
     .action(function () {
+	checkVersion();
 
-        checkVersion();
+	fs.readFile(path.join(CONFIG_LOCATION, CONFIG_FILENAME), 'utf8', function (error, data) {
+		if (error) {
+			return console.log(chalk.red('Config file not found.', error));
+		}
 
-        fs.readFile(path.join(CONFIG_LOCATION, CONFIG_FILENAME), 'utf8', function (error, data) {
+		let options = {};
+		let lineArr = data.split('\n');
+		lineArr.forEach(function (option) {
+			let arr = option.split(': ');
+			options[arr[0]] = arr[1];
+		});
+		shell.cp(path.resolve(__dirname, './edgemesh.sw.js'), options.path);
 
-            if (error) return console.log(chalk.red('Config file not found.', error));
-
-            let options = {};
-            let lineArr = data.split('\n');
-            lineArr.forEach(function(option) {
-                let arr = option.split(': ');
-                options[arr[0]] = arr[1];
-            });
-            shell.cp(path.resolve(__dirname, './edgemesh.sw.js'), options.path);
-
-            return console.log(chalk.green('Edgemesh updated successfully!'));
-        });
-
-    });
+		return console.log(chalk.green('Edgemesh updated successfully!'));
+	});
+});
 
 /**
  * Version Command
@@ -91,32 +87,34 @@ program
     .alias('v')
     .description('check for newer version')
     .usage('edgemesh version')
-    .action(function() {
-        var valid = checkVersion();
-        if(valid) console.log(chalk.green('Edgemesh up to date!'));
-    });
+    .action(function () {
+	var valid = checkVersion();
+	if (valid) {
+		console.log(chalk.green('Edgemesh up to date!'));
+	}
+});
 
 program.parse(process.argv);
 
 function checkVersion() {
-    var latestVersion = shell.exec('npm show edgemesh version', { silent: true }).stdout.split('\n')[0];
-    var currentVersion = packageJSON.version;
-    if(currentVersion !== latestVersion) {
-        var edgemesh = chalk.white('A new version of ') + chalk.magenta('edge') + chalk.magenta.bold('mesh') + chalk.white(' is available');
-        var installCommand = chalk.green('npm i -g edgemesh && edgemesh update');
-        var lv = chalk.white('latest version:  ') + chalk.cyan(latestVersion);
-        var cv = chalk.white('current version: ') + chalk.yellow(currentVersion);
-        console.log(chalk.dim('┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓'));
-        console.log(chalk.dim('┃         ')          + edgemesh   + chalk.dim('          ┃'));
-        console.log(chalk.dim('┃                                                         ┃'));
-        console.log(chalk.dim('┃                  ') + lv  + chalk.dim('                 ┃'));
-        console.log(chalk.dim('┃                  ') + cv  + chalk.dim('                 ┃'));
-        console.log(chalk.dim('┃                                                         ┃'));
-        console.log(chalk.dim('┃          ')   + installCommand  + chalk.dim('           ┃'));
-        console.log(chalk.dim('┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛'));
-        return false;
-    } else {
-        return true;
-    }
-
+	var latestVersion = shell.exec('npm show edgemesh version', {silent: true}).stdout.split('\n')[0];
+	var currentVersion = packageJSON.version;
+	// Version is good!
+	if (currentVersion === latestVersion) {
+		return true;
+	}
+	// New version available
+	var edgemesh = chalk.white('A new version of ') + chalk.magenta('edge') + chalk.magenta.bold('mesh') + chalk.white(' is available');
+	var installCommand = chalk.green('npm i -g edgemesh && edgemesh update');
+	var lv = chalk.white('latest version:  ') + chalk.cyan(latestVersion);
+	var cv = chalk.white('current version: ') + chalk.yellow(currentVersion);
+	console.log(chalk.dim('┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓'));
+	console.log(chalk.dim('┃         ') + edgemesh + chalk.dim('          ┃'));
+	console.log(chalk.dim('┃                                                         ┃'));
+	console.log(chalk.dim('┃                  ') + lv + chalk.dim('                 ┃'));
+	console.log(chalk.dim('┃                  ') + cv + chalk.dim('                 ┃'));
+	console.log(chalk.dim('┃                                                         ┃'));
+	console.log(chalk.dim('┃          ') + installCommand + chalk.dim('           ┃'));
+	console.log(chalk.dim('┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛'));
+	return false;
 }
