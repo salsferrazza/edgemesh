@@ -18,16 +18,12 @@ module.exports = function (config) {
 		files: [
 			'src/index.js',
 			'test/index.js',
-			'src/sw.js',
-			{ pattern: 'dist/edgemesh.hub.min.js', watched: false, included: false },
-			{ pattern: 'dist/edgemesh.client.min.js', watched: false, included: false }
+			'src/sw.js'
 		],
 
 		// Proxies
 		proxies: {
-			'/edgemesh.sw.js': '/base/src/sw.js',
-			'https://unpkg.com/edgemesh/edgemesh.hub.min': '/base/dist/edgemesh.hub.min.js',
-			'https://unpkg.com/edgemesh/edgemesh.client.min': '/base/dist/edgemesh.client.min.js'
+			'/edgemesh.sw.js': '/base/src/sw.js'
 		},
 
 		// list of files to exclude
