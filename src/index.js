@@ -8,10 +8,27 @@ import Emitter from 'component-emitter';
 
 export default class Edgemesh extends Emitter {
 
+	/**
+	 * Script tag that edgemesh is imported with
+	 * @type {Element}
+	 */
 	element = null;
 
+	/**
+	 * Creates an instance of Edgemesh
+	 * @type {Object} opts
+	 * @returns Edgemesh
+	 *
+	 */
 	constructor(opts = {}) {
 		super();
+		// Defalt options
+		this.opts = Object.assign({
+			debug: false,
+			client: 'unpkg.com/edgemesh',
+			host: 'sig.edgeno.de',
+			swPath: '/'
+		}, opts);
 
         // Create script tag
 		let head = document.getElementsByTagName('head')[0];
@@ -24,11 +41,7 @@ export default class Edgemesh extends Emitter {
         // Create script tag
 		script.type = 'text/javascript';
 		script.onload = () => {
-			window.edgemesh = new window.Edgemesh({
-				debug: opts.debug || false,
-				host: opts.host || 'sig.edgeno.de',
-				swPath: opts.swPath || '/'
-			});
+			window.edgemesh = new window.Edgemesh(this.opts);
 			this.emit('ready', window.edgemesh);
 		};
 

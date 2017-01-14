@@ -4,6 +4,9 @@
   "description": "Edgemesh: Peer enhanced CDN",
   "main": "dist/index.js",
   "module": "src/index.js",
+  "bin": {
+    "edgemesh": "dist/bin.js"
+  },
   "xo": {
     "parser": "babel-eslint",
     "env": [
@@ -17,18 +20,26 @@
       "expect"
     ],
     "ignores": [
-      "test/**"
-    ]
-  },
-  "bin": {
-    "edgemesh": "dist/bin.js"
+      "test/**",
+      "dist/**"
+    ],
+    "rules": {
+      "object-curly-spacing": [
+        "error",
+        "always"
+      ],
+      "array-bracket-spacing": [
+        "error",
+        "always"
+      ]
+    }
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/edgemesh/edgemesh.git"
   },
   "author": "Randy Lebeau <rl@edgemesh.com>",
-  "license": "MPL",
+  "license": "MPL-2",
   "bugs": {
     "url": "https://github.com/edgemesh/edgemesh/issues"
   },
@@ -60,7 +71,7 @@
     "karma-mocha-reporter": "^2.2.1",
     "karma-rollup-plugin": "^0.2.4",
     "mocha": "^3.2.0",
-    "rollup": "^0.37.0",
+    "rollup": "^0.41.4",
     "rollup-plugin-babel": "^2.7.1",
     "rollup-plugin-commonjs": "^7.0.0",
     "rollup-plugin-node-resolve": "^2.0.0",

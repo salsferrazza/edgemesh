@@ -20,13 +20,13 @@ export default {
 		}),
 		babel({
 			babelrc: false,
-			presets: ['es2015-rollup'],
+			presets: [ 'es2015-rollup' ],
 			plugins: [
 				'transform-object-rest-spread',
 				'transform-class-properties',
 				'transform-export-extensions'
 			]
 		}),
-		uglify({warnings: true})
+		uglify({ warnings: true })
 	]
 };

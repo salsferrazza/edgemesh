@@ -4,7 +4,26 @@ describe('Edgemesh', () => {
 	it('Should create a script tag', done => {
 		let file = 'https://unpkg.com/edgemesh/edgemesh.client.min.js';
 		let edgemesh = new Edgemesh();
+		assert.isDefined(edgemesh);
 		expect(edgemesh.element.src).to.equal(file);
+		done();
+	});
+
+	it('Should start edgemesh with default options', done => {
+		let edgemesh = new Edgemesh();
+		assert.isDefined(edgemesh);
+
+		expect(edgemesh.opts.debug).to.equal(false);
+		expect(edgemesh.opts.host).to.equal('sig.edgeno.de');
+		expect(edgemesh.opts.swPath).to.equal('/');
+
+		done();
+	});
+
+	it('Should start in debug mode', done => {
+		let edgemesh = new Edgemesh({ debug: true });
+		assert.isDefined(edgemesh);
+		expect(edgemesh.opts.debug).to.equal(true);
 		done();
 	});
 
@@ -25,28 +44,7 @@ describe('Edgemesh', () => {
 	it('Should fire ready event', done => {
 		let edgemesh = new Edgemesh();
 		edgemesh.on('ready', () => {
-			done();
-		});
-	});
-
-	it('Should start edgemesh with default options', done => {
-		let edgemesh = new Edgemesh();
-		edgemesh.on('ready', em => {
-			assert.isDefined(em);
 			assert.isDefined(window.edgemesh);
-
-			expect(window.edgemesh.debug).to.equal(false);
-			expect(em.host).to.equal('sig.edgeno.de');
-			expect(window.edgemesh.swPath).to.equal('/');
-
-			done();
-		});
-	});
-
-	it('Should start in debug mode', done => {
-		let edgemesh = new Edgemesh({debug: true});
-		edgemesh.on('ready', em => {
-			expect(em.debug).to.equal(true);
 			done();
 		});
 	});

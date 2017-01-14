@@ -7,44 +7,48 @@ var commonjs = require('rollup-plugin-commonjs');
 module.exports = function (config) {
 	var opts = {
 
-    // base path that will be used to resolve all patterns (eg. files, exclude)
+		// base path that will be used to resolve all patterns (eg. files, exclude)
 		basePath: '',
 
-    // frameworks to use
-    // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-		frameworks: ['mocha', 'chai'],
+		// frameworks to use
+		// available frameworks: https://npmjs.org/browse/keyword/karma-adapter
+		frameworks: [ 'mocha', 'chai' ],
 
-    // list of files / patterns to load in the browser
+		// list of files / patterns to load in the browser
 		files: [
 			'src/index.js',
 			'test/index.js',
-			'src/sw.js'
+			'src/sw.js',
+			{ pattern: 'dist/edgemesh.hub.min.js', watched: false, included: false },
+			{ pattern: 'dist/edgemesh.client.min.js', watched: false, included: false }
 		],
 
-    // Proxies
+		// Proxies
 		proxies: {
-			'/edgemesh.sw.js': '/base/src/sw.js'
+			'/edgemesh.sw.js': '/base/src/sw.js',
+			'https://unpkg.com/edgemesh/edgemesh.hub.min': '/base/dist/edgemesh.hub.min.js',
+			'https://unpkg.com/edgemesh/edgemesh.client.min': '/base/dist/edgemesh.client.min.js'
 		},
 
-    // list of files to exclude
+		// list of files to exclude
 		exclude: [
 			'/node_modules/',
 			'/test/'
 		],
 
-    // Client options
+		// Client options
 		client: {
 			captureConsole: false
 		},
 
-    // preprocess matching files before serving them to the browser
-    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
+		// preprocess matching files before serving them to the browser
+		// available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
 		preprocessors: {
-			'src/index.js': ['rollup'],
-			'test/index.js': ['rollup']
+			'src/index.js': [ 'rollup' ],
+			'test/index.js': [ 'rollup' ]
 		},
 
-    // Rollup
+		// Rollup
 		rollupPreprocessor: {
 			plugins: [
 				resolve({
@@ -58,12 +62,12 @@ module.exports = function (config) {
 				}),
 				babel({
 					babelrc: false,
-					presets: ['es2015-rollup'],
+					presets: [ 'es2015-rollup' ],
 					plugins: [
 						'transform-object-rest-spread',
 						'transform-class-properties',
 						'transform-export-extensions',
-            ['__coverage__', {ignore: ['test', 'node_modules']}]
+						[ '__coverage__', { ignore: [ 'test', 'node_modules' ] } ]
 					]
 				})
 			],
@@ -71,60 +75,60 @@ module.exports = function (config) {
 			moduleName: 'Edgemesh'
 		},
 
-    // Coverage
+		// Coverage
 		coverageReporter: {
 			dir: 'coverage',
 			reporters: [
-            {type: 'lcovonly', subdir: '.', file: 'lcov.info'}
+            { type: 'lcovonly', subdir: '.', file: 'lcov.info' }
 			]
 		},
 
-    // test results reporter to use
-    // possible values: 'dots', 'progress'
-    // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-		reporters: ['mocha', 'coverage'],
+		// test results reporter to use
+		// possible values: 'dots', 'progress'
+		// available reporters: https://npmjs.org/browse/keyword/karma-reporter
+		reporters: [ 'mocha', 'coverage' ],
 
-    // web server port
+		// web server port
 		port: 9876,
 
-    // enable / disable colors in the output (reporters and logs)
+		// enable / disable colors in the output (reporters and logs)
 		colors: true,
 
-    // level of logging
-    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
+		// level of logging
+		// possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
 		logLevel: config.LOG_INFO,
 
-    // enable / disable watching file and executing tests whenever any file changes
+		// enable / disable watching file and executing tests whenever any file changes
 		autoWatch: true,
 
-    // start these browsers
-    // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-		browsers: ['Chrome', 'ChromeCanary'],
+		// start these browsers
+		// available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
+		browsers: [ 'Chrome', 'ChromeCanary' ],
 
-    // Custom launchers
-    // for travis ci
+		// Custom launchers
+		// for travis ci
 		customLaunchers: {
 			ChromeTravisCi: {
 				base: 'Chrome',
-				flags: ['--no-sandbox']
+				flags: [ '--no-sandbox' ]
 			}
 		},
 
-    // Continuous Integration mode
-    // if true, Karma captures browsers, runs the tests and exits
+		// Continuous Integration mode
+		// if true, Karma captures browsers, runs the tests and exits
 		singleRun: true,
 
-    // Concurrency level
-    // how many browser should be started simultaneous
+		// Concurrency level
+		// how many browser should be started simultaneous
 		concurrency: Infinity
 
 	};
 
-  // Detect Travis
+	// Detect Travis
 	if (process.env.TRAVIS) {
-		opts.browsers = ['ChromeTravisCi'];
+		opts.browsers = [ 'ChromeTravisCi' ];
 	}
 
-  // Set options
+	// Set options
 	config.set(opts);
 };

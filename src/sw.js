@@ -14,7 +14,7 @@ var MESH_INTERCEPT = 'MESH_INTERCEPT';
 self.version = 1.2;
 
 // supported extensions
-self.supportedExtensions = ['jpg', 'jpeg', 'gif', 'png', 'bmp', 'svg', 'webp'];
+self.supportedExtensions = [ 'jpg', 'jpeg', 'gif', 'png', 'bmp', 'svg', 'webp' ];
 
 // the state of the edgemesh DOM is stored here
 var state = {};
@@ -30,7 +30,7 @@ var dataURItoBlob = function (dataURI) {
 		ia[i] = byteString.charCodeAt(i);
 	}
 
-	return new Blob([ab], {type: mimeString});
+	return new Blob([ ab ], { type: mimeString });
 };
 
 var onePixel = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABBJREFUeNpi+P//PwNAgAEACPwC/tuiTRYAAAAASUVORK5CYII=';
@@ -39,7 +39,7 @@ var respondMesh = function (clientId, assets) {
 	self.clients.get(clientId).then(function (client) {
 		client.postMessage({
 			channel: MESH_INTERCEPT,
-			value: {assets: assets}
+			value: { assets: assets }
 		});
 	});
 };

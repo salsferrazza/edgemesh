@@ -97,7 +97,7 @@ program
 program.parse(process.argv);
 
 function checkVersion() {
-	var latestVersion = shell.exec('npm show edgemesh version', {silent: true}).stdout.split('\n')[0];
+	var latestVersion = shell.exec('npm show edgemesh version', { silent: true }).stdout.split('\n')[0];
 	var currentVersion = packageJSON.version;
 	// Version is good!
 	if (currentVersion === latestVersion) {
