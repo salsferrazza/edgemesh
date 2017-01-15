@@ -1,5 +1,6 @@
-// Karma configuration
+/* eslint no-var: 0 */
 
+// Karma configuration
 var babel = require('rollup-plugin-babel');
 var resolve = require('rollup-plugin-node-resolve');
 var commonjs = require('rollup-plugin-commonjs');
@@ -7,14 +8,14 @@ var commonjs = require('rollup-plugin-commonjs');
 module.exports = function (config) {
 	var opts = {
 
-		// base path that will be used to resolve all patterns (eg. files, exclude)
+		// Base path that will be used to resolve all patterns (eg. files, exclude)
 		basePath: '',
 
-		// frameworks to use
+		// Frameworks to use
 		// available frameworks: https://npmjs.org/browse/keyword/karma-adapter
 		frameworks: [ 'mocha', 'chai' ],
 
-		// list of files / patterns to load in the browser
+		// List of files / patterns to load in the browser
 		files: [
 			'src/index.js',
 			'test/index.js',
@@ -26,7 +27,7 @@ module.exports = function (config) {
 			'/edgemesh.sw.js': '/base/src/sw.js'
 		},
 
-		// list of files to exclude
+		// List of files to exclude
 		exclude: [
 			'/node_modules/',
 			'/test/'
@@ -37,8 +38,8 @@ module.exports = function (config) {
 			captureConsole: false
 		},
 
-		// preprocess matching files before serving them to the browser
-		// available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
+		// Preprocess matching files before serving them to the browser
+		// Available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
 		preprocessors: {
 			'src/index.js': [ 'rollup' ],
 			'test/index.js': [ 'rollup' ]
@@ -79,26 +80,26 @@ module.exports = function (config) {
 			]
 		},
 
-		// test results reporter to use
-		// possible values: 'dots', 'progress'
-		// available reporters: https://npmjs.org/browse/keyword/karma-reporter
+		// Test results reporter to use
+		// Possible values: 'dots', 'progress'
+		// Available reporters: https://npmjs.org/browse/keyword/karma-reporter
 		reporters: [ 'mocha', 'coverage' ],
 
-		// web server port
+		// Web server port
 		port: 9876,
 
-		// enable / disable colors in the output (reporters and logs)
+		// Enable / disable colors in the output (reporters and logs)
 		colors: true,
 
-		// level of logging
-		// possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
+		// Level of logging
+		// Possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
 		logLevel: config.LOG_INFO,
 
-		// enable / disable watching file and executing tests whenever any file changes
+		// Enable / disable watching file and executing tests whenever any file changes
 		autoWatch: true,
 
-		// start these browsers
-		// available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
+		// Start these browsers
+		// Available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
 		browsers: [ 'Chrome', 'ChromeCanary' ],
 
 		// Custom launchers
