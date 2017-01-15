@@ -25,18 +25,15 @@ export default class Edgemesh extends Emitter {
 		// Defalt options
 		this.opts = Object.assign({
 			debug: false,
+			// NOTE: Update this to dist on next push
 			client: 'unpkg.com/edgemesh',
 			host: 'sig.edgeno.de',
 			swPath: '/'
 		}, opts);
 
         // Create script tag
-		let head = document.getElementsByTagName('head')[0];
-		let script = document.createElement('script');
-
-        // Set default client
-        // NOTE: Update this to dist on next push
-		let client = opts.client || 'unpkg.com/edgemesh';
+		const head = document.getElementsByTagName('head')[0];
+		const script = document.createElement('script');
 
         // Create script tag
 		script.type = 'text/javascript';
@@ -46,7 +43,7 @@ export default class Edgemesh extends Emitter {
 		};
 
         // Inject script
-		script.src = 'https://' + client + '/edgemesh.client.min.js';
+		script.src = 'https://' + this.opts.client + '/edgemesh.client.min.js';
 		head.appendChild(script);
 
         // Set element

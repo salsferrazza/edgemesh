@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+
+/* eslint no-var: 0, object-shorthand: 0, prefer-arrow-callback: 0, prefer-const: 0 */
+
 var path = require('path');
 var fs = require('fs');
 var program = require('commander');

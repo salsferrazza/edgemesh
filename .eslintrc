@@ -10,6 +10,7 @@ parserOptions:
 env:
   node: true
   es6: true
+  browser: true
 
 rules:
   comma-dangle:
@@ -153,7 +154,7 @@ rules:
   - colors
   array-bracket-spacing:
   - error
-  - never
+  - always
   brace-style:
   - error
   - 1tbs
@@ -236,7 +237,7 @@ rules:
   no-unneeded-ternary: error
   object-curly-spacing:
   - error
-  - never
+  - always
   one-var:
   - error
   - never

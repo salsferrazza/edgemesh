@@ -1,3 +1,5 @@
+/* eslint no-var: 0, object-shorthand: 0, prefer-arrow-callback: 0 */
+
 /**
  * Edgemesh Service Worker
  *
@@ -5,18 +7,18 @@
  *
  */
 
-// event constants
+// Event constants
 var DOM_LOADED = 'DOM_LOADED';
 var DOM_UNLOADED = 'DOM_UNLOADED';
 var MESH_INTERCEPT = 'MESH_INTERCEPT';
 
-// service worker version
+// Service worker version
 self.version = 1.2;
 
-// supported extensions
+// Supported extensions
 self.supportedExtensions = [ 'jpg', 'jpeg', 'gif', 'png', 'bmp', 'svg', 'webp' ];
 
-// the state of the edgemesh DOM is stored here
+// State container
 var state = {};
 
 var dataURItoBlob = function (dataURI) {
@@ -96,7 +98,7 @@ var getLocation = function (href) {
 	};
 };
 
-// when the service worker installs
+// When the service worker installs
 self.addEventListener('install', function (event) {
     // Set up initial state
 	state.domLoaded = false;
@@ -106,7 +108,7 @@ self.addEventListener('install', function (event) {
 	event.waitUntil(self.skipWaiting());
 });
 
-// postmessage event handler
+// Postmessage event handler
 self.addEventListener('activate', function (event) {
     // Set up initial state
 	state.domLoaded = false;
@@ -118,9 +120,9 @@ self.addEventListener('activate', function (event) {
 
 self.addEventListener('message', function (event) {
 	switch (event.data.channel) {
-        // called when the DOM is loaded
+        // Called when the DOM is loaded
 		case DOM_LOADED: {
-            // set loaded state
+            // Set loaded state
 			state.domLoaded = true;
             // Store client id
 			var clientId = event.source.id;
@@ -141,16 +143,16 @@ self.addEventListener('message', function (event) {
 			}
 			break;
 		}
-        // called when the DOM is closed
+        // Called when the DOM is closed
 		case DOM_UNLOADED: {
-            // reset state
+            // Reset state
 			state.domLoaded = false;
 			state.fetchActive = false;
 
 			break;
 		}
 		default:
-			// do nothing
+			// Do nothing
 	}
 });
 
@@ -160,13 +162,13 @@ self.addEventListener('fetch', function (event) {
 	var client = event.clientId;
     // Look for edgemesh script
 	var isEdgemesh = event.request.url.indexOf('edgemesh.client.min.js') !== -1;
-    // set fetch to active when script is found
+    // Set fetch to active when script is found
 	if (isEdgemesh) {
 		state.fetchActive = true;
 		state.domLoaded = false;
 	}
 
-    // capture fetch events
+    // Capture fetch events
 	if (state.fetchActive) {
         // Get url from event
 		var url = event.request.url;
