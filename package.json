@@ -1,6 +1,6 @@
 {
   "name": "edgemesh",
-  "version": "1.3.3",
+  "version": "1.4.0",
   "description": "Edgemesh: Peer enhanced CDN",
   "main": "dist/index.js",
   "module": "src/index.js",
@@ -54,6 +54,7 @@
     "babel-cli": "^6.18.0",
     "babel-eslint": "^7.1.1",
     "babel-plugin-__coverage__": "^11.0.0",
+    "babel-plugin-coverage": "^1.0.0",
     "babel-plugin-transform-class-properties": "^6.19.0",
     "babel-plugin-transform-export-extensions": "^6.8.0",
     "babel-plugin-transform-object-rest-spread": "^6.20.2",
@@ -81,6 +82,7 @@
   },
   "scripts": {
     "build": "./scripts/build.sh",
+    "dist": "./scripts/dist.sh",
     "clean": "./scripts/clean.sh",
     "test": "./scripts/test.sh",
     "lint": "./scripts/lint.sh",

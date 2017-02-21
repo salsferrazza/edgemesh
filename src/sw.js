@@ -178,7 +178,9 @@ self.addEventListener('fetch', function (event) {
 
 		if (self.supportedExtensions.indexOf(fileExtension) === -1) {
 			// Not a mesh file.  Skip.
-			event.respondWith(fetch(event.request));
+			event.respondWith(fetch(event.request)).catch(function () {
+				console.log('unable to fetch ' + url);
+			});
 		} else {
 			var location = getLocation(url);
 			var originId = hash(location.hostname);

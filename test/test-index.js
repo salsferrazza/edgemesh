@@ -2,7 +2,7 @@ import Edgemesh from '../src';
 
 describe('Edgemesh', () => {
 	it('Should create a script tag', done => {
-		let file = 'https://unpkg.com/edgemesh/edgemesh.client.min.js';
+		let file = 'https://jsdelivr.com/edgemesh/latest/edgemesh.client.min.js';
 		let edgemesh = new Edgemesh();
 		assert.isDefined(edgemesh);
 		expect(edgemesh.element.src).to.equal(file);
@@ -13,17 +13,10 @@ describe('Edgemesh', () => {
 		let edgemesh = new Edgemesh();
 		assert.isDefined(edgemesh);
 
-		expect(edgemesh.opts.debug).to.equal(false);
+		expect(edgemesh.opts.client).to.equal('jsdelivr.com/edgemesh/latest');
 		expect(edgemesh.opts.host).to.equal('sig.edgeno.de');
 		expect(edgemesh.opts.swPath).to.equal('/');
 
-		done();
-	});
-
-	it('Should start in debug mode', done => {
-		let edgemesh = new Edgemesh({ debug: true });
-		assert.isDefined(edgemesh);
-		expect(edgemesh.opts.debug).to.equal(true);
 		done();
 	});
 
@@ -41,7 +34,7 @@ describe('Edgemesh', () => {
 		done();
 	});
 
-	it('Should fire ready event', done => {
+	xit('Should fire ready event', done => {
 		let edgemesh = new Edgemesh();
 		edgemesh.on('ready', () => {
 			assert.isDefined(window.edgemesh);
