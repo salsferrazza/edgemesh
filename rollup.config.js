@@ -6,7 +6,7 @@ import commonjs from 'rollup-plugin-commonjs';
 export default {
 	entry: 'src/index.js',
 	moduleName: 'Edgemesh',
-	format: 'iife',
+	format: 'cjs',
 	dest: 'dist/index.js',
 	plugins: [
 		resolve({

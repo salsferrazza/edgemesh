@@ -2,7 +2,7 @@ import Edgemesh from '../src';
 
 describe('Edgemesh', () => {
 	it('Should create a script tag', done => {
-		let file = 'https://jsdelivr.com/edgemesh/latest/edgemesh.client.min.js';
+		let file = 'https://cdn.jsdelivr.net/edgemesh/latest/edgemesh.client.min.js';
 		let edgemesh = new Edgemesh();
 		assert.isDefined(edgemesh);
 		expect(edgemesh.element.src).to.equal(file);
@@ -13,7 +13,7 @@ describe('Edgemesh', () => {
 		let edgemesh = new Edgemesh();
 		assert.isDefined(edgemesh);
 
-		expect(edgemesh.opts.client).to.equal('jsdelivr.com/edgemesh/latest');
+		expect(edgemesh.opts.client).to.equal('cdn.jsdelivr.net/edgemesh/latest');
 		expect(edgemesh.opts.host).to.equal('sig.edgeno.de');
 		expect(edgemesh.opts.swPath).to.equal('/');
 

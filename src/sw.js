@@ -177,10 +177,23 @@ self.addEventListener('fetch', function (event) {
 		var fileExtension = urlArray[urlArray.length - 1].toLowerCase();
 
 		if (self.supportedExtensions.indexOf(fileExtension) === -1) {
-			// Not a mesh file.  Skip.
-			event.respondWith(fetch(event.request)).catch(function () {
-				console.log('unable to fetch ' + url);
-			});
+			if (event.request.url.match(/\?edgemesh=origin/)) {
+				// Not a mesh file.  Skip.
+				var originalUrl = event.request.url.replace(/\?edgemesh=origin/, '');
+				var request = new Request(originalUrl, {
+					method: event.request.method,
+					headers: event.request.headers,
+					mode: event.request.mode,
+					credentials: event.request.credentials,
+					redirect: event.request.redirect,
+					referrer: event.request.referrer,
+					referrerPolicy: event.request.referrerPolicy,
+					integrity: event.request.integrity
+				});
+				event.respondWith(fetch(request));
+			} else {
+				return event.respondWith(fetch(event.request));
+			}
 		} else {
 			var location = getLocation(url);
 			var originId = hash(location.hostname);

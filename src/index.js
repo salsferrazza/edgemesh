@@ -24,8 +24,7 @@ export default class Edgemesh extends Emitter {
 		super();
 		// Defalt options
 		this.opts = Object.assign({
-			client: 'jsdelivr.com/edgemesh/latest',
-			worker: 'jsdelivr.com/edgemesh/latest',
+			client: 'cdn.jsdelivr.net/edgemesh/latest',
 			host: 'sig.edgeno.de',
 			swPath: '/'
 		}, opts);

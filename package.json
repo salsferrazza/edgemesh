@@ -3,7 +3,6 @@
   "version": "1.4.0",
   "description": "Edgemesh: Peer enhanced CDN",
   "main": "dist/index.js",
-  "module": "src/index.js",
   "bin": {
     "edgemesh": "dist/bin.js"
   },
@@ -88,6 +87,6 @@
     "lint": "./scripts/lint.sh",
     "test-browser": "./scripts/test-browser.sh",
     "test-server": "./scripts/test-server.sh",
-    "publish": "./scripts/publish.sh"
+    "pub": "./scripts/publish.sh"
   }
 }
