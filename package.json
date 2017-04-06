@@ -1,7 +1,7 @@
 {
   "name": "edgemesh",
   "version": "1.4.0",
-  "description": "Edgemesh: Peer enhanced CDN",
+  "description": "Dynamic Web Acceleration Platform",
   "main": "dist/index.js",
   "bin": {
     "edgemesh": "dist/bin.js"
