@@ -24,7 +24,7 @@ All of our documentation can be found at [https://edgemesh.com/docs](https://edg
 
 ## CLI
 
-The edgemesh CLI provides an easy way to install and update the edge**mesh** service worker.
+The edge**mesh** CLI provides an easy way to install and update the edge**mesh** service worker.
 If you have [node.js](https://nodejs.org) installed on your destination machine you are ready to go.
 
 Install edge**mesh** globally
@@ -83,9 +83,9 @@ As browsers add support for the latest web features that edge**mesh** utilizes, 
 | Browser                                                                                                  | Market Share | Supported Versions | Blocked by                 |
 |----------------------------------------------------------------------------------------------------------|--------------|--------------------|----------------------------|
 | <img src="https://sig.edgeno.de/assets/browser-icons/chrome.png" alt="Chrome" width="40" height="40" />  | 58%          | >49            | ✅ Implemented              |
-| <img src="https://sig.edgeno.de/assets/browser-icons/firefox.png" alt="Chrome" width="40" height="40" /> | 12%          | >58     | ✅ Implemented |
-| <img src="https://sig.edgeno.de/assets/browser-icons/edge.png" alt="Chrome" width="40" height="40" />    | 5%           | Not supported      | ❌ No webrtc support        |
-| <img src="https://sig.edgeno.de/assets/browser-icons/safari.png" alt="Chrome" width="40" height="40" />  | 3%           | Not supported      | ❌ No webrtc support        |
+| <img src="https://sig.edgeno.de/assets/browser-icons/firefox.png" alt="Firefox" width="40" height="40" /> | 12%          | >58     | ✅ Implemented |
+| <img src="https://sig.edgeno.de/assets/browser-icons/edge.png" alt="Edge" width="40" height="40" />    | 5%           | Not supported      | ❌ No webrtc support        |
+| <img src="https://sig.edgeno.de/assets/browser-icons/safari.png" alt="Safari" width="40" height="40" />  | 3%           | Not supported      | ❌ No webrtc support        |
 
 ## Troubleshooting
 

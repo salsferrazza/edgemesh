@@ -34,7 +34,7 @@ describe('Edgemesh', () => {
 		done();
 	});
 
-	xit('Should fire ready event', done => {
+	it('Should fire ready event', done => {
 		let edgemesh = new Edgemesh();
 		edgemesh.on('ready', () => {
 			assert.isDefined(window.edgemesh);
