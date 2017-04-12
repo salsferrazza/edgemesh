@@ -1,6 +1,6 @@
 {
   "name": "edgemesh",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "description": "Dynamic Web Acceleration Platform",
   "main": "dist/index.js",
   "bin": {
