@@ -6,6 +6,8 @@
 
 import Emitter from 'component-emitter';
 
+const HOST = 'sig.edgeno.de';
+
 export default class Edgemesh extends Emitter {
 
 	/**
@@ -24,8 +26,8 @@ export default class Edgemesh extends Emitter {
 		super();
 		// Defalt options
 		this.opts = Object.assign({
-			client: 'cdn.jsdelivr.net/edgemesh/latest',
-			host: 'sig.edgeno.de',
+			client: HOST,
+			host: HOST,
 			swPath: '/'
 		}, opts);
 
