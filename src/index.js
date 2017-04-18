@@ -32,7 +32,7 @@ export default class Edgemesh extends Emitter {
 		}, opts);
 
         // Create script tag
-		const head = document.getElementsByTagName('head')[0];
+		const body = document.getElementsByTagName('body')[0];
 		const script = document.createElement('script');
 
         // Create script tag
@@ -44,7 +44,7 @@ export default class Edgemesh extends Emitter {
 
         // Inject script
 		script.src = 'https://' + this.opts.client + '/edgemesh.client.min.js';
-		head.appendChild(script);
+		body.appendChild(script);
 
         // Set element
 		this.element = script;
