@@ -28,7 +28,8 @@ export default class Edgemesh extends Emitter {
 		this.opts = Object.assign({
 			client: HOST,
 			host: HOST,
-			swPath: '/'
+			swPath: '/',
+			externalMount: false
 		}, opts);
 
         // Create script tag

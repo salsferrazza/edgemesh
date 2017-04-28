@@ -19,6 +19,7 @@ describe('Edgemesh', () => {
 		expect(edgemesh.opts.client).to.equal(HOST);
 		expect(edgemesh.opts.host).to.equal(HOST);
 		expect(edgemesh.opts.swPath).to.equal('/');
+		expect(edgemesh.opts.externalMount).to.equal(false);
 
 		done();
 	});
