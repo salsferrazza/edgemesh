@@ -19,12 +19,12 @@ module.exports = function (config) {
 		files: [
 			'src/index.js',
 			'test/index.js',
-			'src/sw.js'
+			'dist/edgemesh.sw.min.js'
 		],
 
 		// Proxies
 		proxies: {
-			'/edgemesh.sw.js': '/base/src/sw.js'
+			'/edgemesh.sw.min.js': '/base/dist/edgemesh.sw.min.js'
 		},
 
 		// List of files to exclude
