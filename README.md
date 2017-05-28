@@ -12,6 +12,7 @@
 [![npm](https://img.shields.io/npm/dm/edgemesh.svg?maxAge=2592000)](https://www.npmjs.com/package/edgemesh)
 [![npm](https://img.shields.io/npm/dt/edgemesh.svg?maxAge=2592000)](https://www.npmjs.com/package/edgemesh)
 
+> 🚀 edge**mesh** `1.6.0` drastically improves performance!  Be sure to update your service worker.  Your site will not be allowed to participate on the mesh if you are running a version `<1.6.0`
 
 ## Requirements
 
