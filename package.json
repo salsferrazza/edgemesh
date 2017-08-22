@@ -1,6 +1,6 @@
 {
   "name": "edgemesh",
-  "version": "1.6.2",
+  "version": "1.7.0",
   "description": "Dynamic Web Acceleration Platform",
   "main": "dist/index.js",
   "bin": {
@@ -38,7 +38,7 @@
     "url": "git+https://github.com/edgemesh/edgemesh.git"
   },
   "author": "Randy Lebeau <rl@edgemesh.com>",
-  "license": "MPL-2",
+  "license": "MPL-2.0",
   "bugs": {
     "url": "https://github.com/edgemesh/edgemesh/issues"
   },
